@@ -20,7 +20,7 @@ public class TowerDefenceWaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     
     [Header("Performance")]
-    public int maxSimultaneousEnemies = 2500; // Stress test requirement
+    public int maxSimultaneousEnemies = 2500;
     
     private int currentWave = 1;
     private int enemiesAlive = 0;
@@ -95,14 +95,14 @@ public class TowerDefenceWaveManager : MonoBehaviour
         
         
         Vector3[] pathPoints = {
-            new Vector3(-25, 1, 0),    // Start
+            new Vector3(-25, 1, 0),
             new Vector3(-15, 1, 0),
             new Vector3(-15, 1, 15),
             new Vector3(0, 1, 15),
             new Vector3(0, 1, -15),
             new Vector3(15, 1, -15),
             new Vector3(15, 1, 5),
-            new Vector3(25, 1, 5)      // End
+            new Vector3(25, 1, 5)
         };
         
         if (waypointParent == null)
@@ -166,11 +166,11 @@ public class TowerDefenceWaveManager : MonoBehaviour
         GameObject spriteChild = new GameObject("EnemySprite");
         spriteChild.transform.SetParent(enemyPrefab.transform);
         spriteChild.transform.localPosition = Vector3.zero;
-        spriteChild.transform.localScale = new Vector3(1.5f, 1.5f, 1f); // Scale sprite
+        spriteChild.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
         
         SpriteRenderer spriteRenderer = spriteChild.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = CreateEnemySprite();
-        spriteRenderer.sortingOrder = 5; // Below player
+        spriteRenderer.sortingOrder = 5;
         
         spriteChild.AddComponent<BillboardSprite>();
         
@@ -184,7 +184,7 @@ public class TowerDefenceWaveManager : MonoBehaviour
         
         for (int i = 0; i < pixels.Length; i++)
         {
-            pixels[i] = Color.red; // Default red, will be changed per enemy type
+            pixels[i] = Color.red;
         }
         
         texture.SetPixels(pixels);
@@ -268,7 +268,7 @@ public class TowerDefenceWaveManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                yield break; // Exit delay immediately
+                yield break;
             }
             
             elapsed += Time.deltaTime;
@@ -280,11 +280,11 @@ public class TowerDefenceWaveManager : MonoBehaviour
     {
         if (isBossWave)
         {
-            return Random.Range(2, 5); // 2-4 boss enemies
+            return Random.Range(2, 5);
         }
         else
         {
-            return baseEnemiesPerWave + (currentWave - 1) * 2; // Increasing difficulty
+            return baseEnemiesPerWave + (currentWave - 1) * 2;
         }
     }
     
@@ -329,20 +329,20 @@ public class TowerDefenceWaveManager : MonoBehaviour
         
         if (currentWave <= 2)
         {
-            return TowerDefenceEnemy.EnemyType.Basic; // Red enemies early
+            return TowerDefenceEnemy.EnemyType.Basic;
         }
         else if (currentWave <= 4)
         {
             float rand = Random.value;
             if (rand < 0.7f) return TowerDefenceEnemy.EnemyType.Basic;
-            else return TowerDefenceEnemy.EnemyType.Fast; // Add blue
+            else return TowerDefenceEnemy.EnemyType.Fast;
         }
         else if (currentWave <= 7)
         {
             float rand = Random.value;
             if (rand < 0.5f) return TowerDefenceEnemy.EnemyType.Basic;
             else if (rand < 0.8f) return TowerDefenceEnemy.EnemyType.Fast;
-            else return TowerDefenceEnemy.EnemyType.Tank; // Add green
+            else return TowerDefenceEnemy.EnemyType.Tank;
         }
         else if (currentWave <= 10)
         {
@@ -350,7 +350,7 @@ public class TowerDefenceWaveManager : MonoBehaviour
             if (rand < 0.4f) return TowerDefenceEnemy.EnemyType.Basic;
             else if (rand < 0.65f) return TowerDefenceEnemy.EnemyType.Fast;
             else if (rand < 0.85f) return TowerDefenceEnemy.EnemyType.Tank;
-            else return TowerDefenceEnemy.EnemyType.Elite; // Add purple
+            else return TowerDefenceEnemy.EnemyType.Elite;
         }
         else
         {

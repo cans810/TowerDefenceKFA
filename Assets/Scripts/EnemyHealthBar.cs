@@ -43,8 +43,8 @@ public class EnemyHealthBar : MonoBehaviour
         healthCanvas.worldCamera = mainCamera;
         
         RectTransform canvasRect = healthCanvas.GetComponent<RectTransform>();
-        canvasRect.sizeDelta = new Vector2(1.5f, 0.15f); // 3x bigger canvas units
-        canvasObj.transform.localScale = new Vector3(0.0000003f, 0.0000003f, 0.0000003f); // 3x bigger scale
+        canvasRect.sizeDelta = new Vector2(1.5f, 0.15f);
+        canvasObj.transform.localScale = new Vector3(0.0000003f, 0.0000003f, 0.0000003f);
         
         CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;

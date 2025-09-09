@@ -49,14 +49,14 @@ public class TowerDefenceProjectile : MonoBehaviour
                 speed = 15f;
                 mat.color = Color.cyan;
                 transform.localScale = Vector3.one * 0.2f;
-                lifetime = 2f; // Shorter range for balance
+                lifetime = 2f;
                 break;
                 
             case TowerDefencePlayer.WeaponType.Rocket:
                 speed = 8f;
                 mat.color = Color.red;
                 transform.localScale = Vector3.one * 0.5f;
-                damage = (int)(damage * 1.5f); // 50% more damage
+                damage = (int)(damage * 1.5f);
                 break;
         }
         
@@ -121,7 +121,7 @@ public class TowerDefenceProjectile : MonoBehaviour
     void HandleRocketExplosion(Vector3 explosionCenter)
     {
         float explosionRadius = 3f;
-        int explosionDamage = damage / 2; // Reduced AoE damage
+        int explosionDamage = damage / 2;
         
         Collider[] enemiesInRange = Physics.OverlapSphere(explosionCenter, explosionRadius);
         
@@ -155,11 +155,11 @@ public class TowerDefenceProjectile : MonoBehaviour
             
             Renderer renderer = particle.GetComponent<Renderer>();
             Material mat = new Material(Shader.Find("Standard"));
-            mat.color = new Color(1f, 0.5f, 0f, 0.8f); // Orange
+            mat.color = new Color(1f, 0.5f, 0f, 0.8f);
             renderer.material = mat;
             
             Vector3 randomDirection = Random.insideUnitSphere;
-            randomDirection.y = Mathf.Abs(randomDirection.y); // Keep particles above ground
+            randomDirection.y = Mathf.Abs(randomDirection.y);
             
             Rigidbody particleRb = particle.AddComponent<Rigidbody>();
             particleRb.velocity = randomDirection * Random.Range(5f, 10f);

@@ -137,7 +137,7 @@ public class SimplePlayer : MonoBehaviour
     
     void Die()
     {
-        Time.timeScale = 0f; // Pause game
+        Time.timeScale = 0f;
     }
     
     void OnGUI()

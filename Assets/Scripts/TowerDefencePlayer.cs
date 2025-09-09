@@ -36,9 +36,9 @@ public class TowerDefencePlayer : MonoBehaviour
     
     public enum WeaponType
     {
-        BasicShot,    // Fast, low damage
-        Laser,        // Medium, piercing
-        Rocket        // Slow, high damage, area
+        BasicShot,
+        Laser,
+        Rocket
     }
     
     void Start()

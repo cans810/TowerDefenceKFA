@@ -19,60 +19,9 @@ public class SimpleWaveSpawner : MonoBehaviour
     
     void Start()
     {
-        if (enemyPrefab == null)
-            CreateSimpleEnemyPrefab();
-            
-        if (spawnPoint == null)
-            CreateSpawnPoint();
-            
         StartCoroutine(WaveLoop());
     }
-    
-    void CreateSimpleEnemyPrefab()
-    {
-        GameObject enemy = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        enemy.name = "SimpleEnemy";
-        enemy.transform.localScale = Vector3.one * 2f;
-        
-        Renderer renderer = enemy.GetComponent<Renderer>();
-        Material mat = new Material(Shader.Find("Standard"));
-        mat.color = Color.red;
-        renderer.material = mat;
-        
-        SimpleEnemy enemyScript = enemy.AddComponent<SimpleEnemy>();
-        
-        Rigidbody rb = enemy.AddComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-        
-        BoxCollider collider = enemy.GetComponent<BoxCollider>();
-        collider.isTrigger = true;
-        
-        enemy.tag = "Enemy";
-        enemy.SetActive(false);
-        enemyPrefab = enemy;
-        
-    }
-    
-    void CreateSpawnPoint()
-    {
-        GameObject spawn = new GameObject("SpawnPoint");
-        spawn.transform.position = new Vector3(-20, 1, 0);
-        spawnPoint = spawn.transform;
-        
-        GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        marker.name = "SpawnMarker";
-        marker.transform.SetParent(spawn.transform);
-        marker.transform.localPosition = Vector3.zero;
-        marker.transform.localScale = Vector3.one * 0.5f;
-        
-        Renderer renderer = marker.GetComponent<Renderer>();
-        Material mat = new Material(Shader.Find("Standard"));
-        mat.color = Color.green;
-        renderer.material = mat;
-        
-    }
-    
+
     
     IEnumerator WaveLoop()
     {
@@ -137,24 +86,4 @@ public class SimpleWaveSpawner : MonoBehaviour
         }
     }
     
-    void OnDrawGizmosSelected()
-    {
-        if (waypoints != null && waypoints.Length > 1)
-        {
-            Gizmos.color = Color.red;
-            for (int i = 0; i < waypoints.Length - 1; i++)
-            {
-                if (waypoints[i] != null && waypoints[i + 1] != null)
-                {
-                    Gizmos.DrawLine(waypoints[i].position, waypoints[i + 1].position);
-                }
-            }
-        }
-        
-        if (spawnPoint != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(spawnPoint.position, 1f);
-        }
-    }
 }
