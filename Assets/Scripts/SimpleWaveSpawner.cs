@@ -76,41 +76,6 @@ public class SimpleWaveSpawner : MonoBehaviour
         
     }
     
-    void CreateSimpleWaypoints()
-    {
-        Vector3[] points = {
-            new Vector3(-20, 1, 0), 
-            new Vector3(-10, 1, 0),
-            new Vector3(-10, 1, 10),
-            new Vector3(10, 1, 10),
-            new Vector3(10, 1, -10),
-            new Vector3(20, 1, -10)
-        };
-        
-        waypoints = new Transform[points.Length];
-        GameObject waypointParent = new GameObject("Waypoints");
-        
-        for (int i = 0; i < points.Length; i++)
-        {
-            GameObject waypoint = new GameObject($"Waypoint_{i}");
-            waypoint.transform.position = points[i];
-            waypoint.transform.SetParent(waypointParent.transform);
-            waypoints[i] = waypoint.transform;
-            
-            GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-            marker.name = "WaypointMarker";
-            marker.transform.SetParent(waypoint.transform);
-            marker.transform.localPosition = Vector3.zero;
-            marker.transform.localScale = new Vector3(1, 0.1f, 1);
-            
-            Renderer renderer = marker.GetComponent<Renderer>();
-            Material mat = new Material(Shader.Find("Standard"));
-            mat.color = Color.yellow;
-            renderer.material = mat;
-        }
-        
-    }
-    
     IEnumerator WaveLoop()
     {
         while (true)
