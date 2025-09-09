@@ -79,12 +79,12 @@ public class SimpleWaveSpawner : MonoBehaviour
     void CreateSimpleWaypoints()
     {
         Vector3[] points = {
-            new Vector3(-20, 1, 0),   // Start
+            new Vector3(-20, 1, 0), 
             new Vector3(-10, 1, 0),
             new Vector3(-10, 1, 10),
             new Vector3(10, 1, 10),
             new Vector3(10, 1, -10),
-            new Vector3(20, 1, -10)   // End
+            new Vector3(20, 1, -10)
         };
         
         waypoints = new Transform[points.Length];
